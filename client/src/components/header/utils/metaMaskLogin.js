@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import metaMaskFox from "../img/metamask-fox.svg";
+import metaMaskFox from "../../../assets/img/metamask-fox.svg";
 
 
-const MetamaskLogin = ({mmAccounts, setMmAccounts}) => {
+const MetamaskLogin = ({mmAccounts, setMmAccounts, hideForm}) => {
     const { ethereum } = window;
     const [buttonText, setButtonText] = useState('MetaMask');
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -45,7 +45,7 @@ const MetamaskLogin = ({mmAccounts, setMmAccounts}) => {
             let account = accounts[0];
             setMmAccounts(account);
             setButtonText('MetaMask Connected');
-
+            hideForm();
         } catch (error) {
             console.error(error);
             setIsButtonDisabled(false);

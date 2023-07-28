@@ -1,8 +1,8 @@
 import React from "react";
 
-import styles from "./styles/header.module.css";
-import formConnectWalletExitBtn from "./img/formConnectWalletExitBtn.png";
-import MetamaskLogin from "./scripts/metaMaskLogin";
+import styles from "../../assets/styles/header.module.css";
+import formConnectWalletExitBtn from "../../assets/img/formConnectWalletExitBtn.png";
+import MetamaskLogin from "./utils/metaMaskLogin";
 
 
 const Header = ({ accounts, setAccounts }) => {
@@ -21,10 +21,6 @@ const Header = ({ accounts, setAccounts }) => {
         const formConnectWallet = document.getElementById(styles.formConnectWallet);
         screenDimming.style.display = "block";
         formConnectWallet.style.display = "block";
-    }
-
-    if (accounts !== '') {
-        console.log(accounts);
     }
 
     return (
@@ -52,7 +48,11 @@ const Header = ({ accounts, setAccounts }) => {
             <ul id={styles.formConnectWallet}>
                 <img onClick={hideForm} id={styles.formConnectWallet_btn} src={formConnectWalletExitBtn} alt="exitbtn" />
                 <li>
-                    <MetamaskLogin mmAccounts={accounts} setMmAccounts={setAccounts} />
+                    <MetamaskLogin
+                        mmAccounts={accounts}
+                        setMmAccounts={setAccounts}
+                        hideForm={hideForm}
+                    />
                 </li>
             </ul>
         </>

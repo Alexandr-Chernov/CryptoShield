@@ -1,18 +1,23 @@
 const express = require('express'),
     app = express();
-const path = require('path');
+const cors = require('cors');
+const transactionRouter = require('./routes/transaction.routes');
 
 const HOST = 'localhost';
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-app.get('/api', (req, res) => {
-    res.json({ message: "Hello from API!" });
-});
+app.use(cors());
+app.use(express.json());
+app.use('/', transactionRouter);
 
-app.get('/test', (req, res) => {
-    res.json({ message: "Hello from TEST!" });
-});
+const start = async () => {
+    try {
+        app.listen(PORT, () => {
+            console.log(`PORT: ${PORT}`);
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
 
-app.listen(PORT, (error) => {
-    error ? console.log(error) : console.log(`PORT: ${PORT}`);
-});
+start();

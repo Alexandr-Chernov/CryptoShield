@@ -15,7 +15,11 @@
   "author": "Alexander Chernov, Ruslan Gulyanov",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

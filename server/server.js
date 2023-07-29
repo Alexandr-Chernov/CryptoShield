@@ -1,17 +1,26 @@
+const config = require("config");
 const express = require('express'),
     app = express();
+const mongoose = require('mongoose');
 const cors = require('cors');
-const transactionRouter = require('./routes/transaction.routes');
+const apiRouter = require('./routes/api.routes');
 
-const HOST = 'localhost';
-const PORT = process.env.PORT || 3001;
+const PORT = config.get('SERVER_PORT');
 
 app.use(cors());
 app.use(express.json());
-app.use('/', transactionRouter);
+app.use('/api', apiRouter);
 
 const start = async () => {
     try {
+        await mongoose
+            .connect(config.get("DB_URL"), {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            })
+            .then((res) => console.log('Connected to DB'))
+            .catch((error) => console.log(error));
+
         app.listen(PORT, () => {
             console.log(`PORT: ${PORT}`);
         });

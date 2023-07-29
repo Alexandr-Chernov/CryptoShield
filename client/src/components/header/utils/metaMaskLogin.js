@@ -1,28 +1,34 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import metaMaskFox from "../../../assets/img/metamask-fox.svg";
+import { accountLogin } from "../../../actions/accountLogin";
 
 
-const MetamaskLogin = ({mmAccounts, setMmAccounts, hideForm}) => {
+const MetamaskLogin = ({ hideForm }) => {
     const { ethereum } = window;
     const [buttonText, setButtonText] = useState('MetaMask');
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const dispatch = useDispatch();
     
+    const isAuth = useSelector(state => state.account.isAuth);
+
     useEffect(() => {
-        if (mmAccounts == null || mmAccounts.length === 0)
-            setIsButtonDisabled(false)
-        else
-            setIsButtonDisabled(true)
-    }, [mmAccounts])
+        if (!isAuth) {
+            setIsButtonDisabled(false);
+        } else {
+            setIsButtonDisabled(true);
+        }
+    }, [isAuth])
 
     async function metaMaskClientCheck() {
         if (!isMetaMaskInstalled()) {
             await metamaskInstall()
-            setIsButtonDisabled(true)
+            setIsButtonDisabled(true);
         }
         else {
             await metamaskConnect()
-            setIsButtonDisabled(false)
+            setIsButtonDisabled(false);
         }
     }
 
@@ -42,9 +48,10 @@ const MetamaskLogin = ({mmAccounts, setMmAccounts, hideForm}) => {
         try {
             let accounts = await ethereum.request({ method: 'eth_requestAccounts' });
             console.log('Ethereum Request over');
-            let account = accounts[0];
-            setMmAccounts(account);
             setButtonText('MetaMask Connected');
+
+            dispatch(accountLogin(accounts[0]));
+            
             hideForm();
         } catch (error) {
             console.error(error);

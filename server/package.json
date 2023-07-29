@@ -15,11 +15,13 @@
   "author": "Alexander Chernov, Ruslan Gulyanov",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.4.0",
+    "config": "^3.3.9",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
-    "zustand": "^4.3.9"
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.1",
+    "mongoose-type-ethereum-address": "^1.1.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

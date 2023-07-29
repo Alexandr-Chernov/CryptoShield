@@ -1,9 +1,10 @@
 import axios from "axios";
+import { API_URL } from "../config";
 
 
 export const sendTransaction = async (fromAddress, toAddress, amount) => {
     try {
-        const response = await axios.post('http://localhost:3001/transaction', {
+        const response = await axios.post(`${API_URL}api/transaction`, {
             fromAddress,
             toAddress,
             amount

@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import { create } from "zustand";
+import { useDispatch } from "react-redux";
 
 import Header from "./components/header/header.js";
 import Home from './components/home/home.js';
-/*
-const useStore = create(set => ({
-  stores: [
-    {id: 1, title: 'Test store'}
-  ],
-  isLoading: false,
-  error: null,
-  addStore: (id, title) => set(state => {
-    const newStore = {id: id, title}
-    return {stores: [...state.stores, newStore]}
-  })
-}));*/
+import { accountAuth } from "./actions/accountLogin.js";
 
 function App() {
 
-  const [accounts, setAccounts] = useState('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(accountAuth());
+  }, []);
 
   return (
     <BrowserRouter>
-      <Header accounts={accounts} setAccounts={setAccounts} />
+      <Header />
       <Routes>
-        <Route path="/" element={<Home accounts={accounts} setAccounts={setAccounts} />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

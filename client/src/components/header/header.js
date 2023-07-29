@@ -1,11 +1,17 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "../../assets/styles/header.module.css";
 import formConnectWalletExitBtn from "../../assets/img/formConnectWalletExitBtn.png";
 import MetamaskLogin from "./utils/metaMaskLogin";
+import { logout } from "../../reducers/accountReducer";
 
 
-const Header = ({ accounts, setAccounts }) => {
+const Header = () => {
+
+    const isAuth = useSelector(state => state.account.isAuth);
+    const address = useSelector(state => state.account.currentAccount.address);
+    const dispatch = useDispatch();
 
     // Скрытие формы с подключениями к кошелькам
     const hideForm = () => {
@@ -31,10 +37,13 @@ const Header = ({ accounts, setAccounts }) => {
                         AMLTran
                     </li>
                 </ul>
-                {accounts !== '' ?
+                {isAuth ?
                     <ul className={styles.navbar_right_1}>
                         <li>
-                            <button>{accounts.slice(0, 3)}...{accounts.slice(-4)}</button>
+                            <button onClick={() => dispatch(logout())}>Exit</button>
+                        </li>
+                        <li>
+                            <div>{address.slice(0, 3)}...{address.slice(-4)}</div>
                         </li>
                     </ul> :
                     <ul className={styles.navbar_right_2}>
@@ -48,11 +57,7 @@ const Header = ({ accounts, setAccounts }) => {
             <ul id={styles.formConnectWallet}>
                 <img onClick={hideForm} id={styles.formConnectWallet_btn} src={formConnectWalletExitBtn} alt="exitbtn" />
                 <li>
-                    <MetamaskLogin
-                        mmAccounts={accounts}
-                        setMmAccounts={setAccounts}
-                        hideForm={hideForm}
-                    />
+                    <MetamaskLogin hideForm={hideForm} />
                 </li>
             </ul>
         </>

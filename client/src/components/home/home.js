@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { sendTransaction } from "../../actions/sendTransaction";
 
 import styles from "../../assets/styles/home.module.css";
 
-const Home = ({ accounts, setAccounts }) => {
+const Home = () => {
+
+    const isAuth = useSelector(state => state.account.isAuth);
+    const address = useSelector(state => state.account.currentAccount.address);
 
     const [addressTo, setAddressTo] = useState(null);
     const [amount, setAmount] = useState(null);
@@ -17,7 +21,7 @@ const Home = ({ accounts, setAccounts }) => {
 
     return (
         <>
-            {accounts !== "" ? (
+            {isAuth ? (
                 <main className={styles.content}>
                     <h1>Make a transaction using AML tools!</h1>
                     <div className={styles.form_input}>
@@ -34,7 +38,7 @@ const Home = ({ accounts, setAccounts }) => {
                             placeholder="Amount"
                         />
                     </div>
-                    <button onClick={() => sendTransaction(accounts, addressTo, amount)}>Send</button>
+                    <button onClick={() => sendTransaction(address, addressTo, amount)}>Send</button>
                 </main>
             ) : (
                 <h1 className={styles.nconn}>Please connect wallet</h1>

@@ -7,7 +7,6 @@ import { accountLogin } from "../../../actions/accountLogin";
 
 const MetamaskLogin = ({ hideForm }) => {
     const { ethereum } = window;
-    const [buttonText, setButtonText] = useState('MetaMask');
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const dispatch = useDispatch();
     
@@ -23,8 +22,8 @@ const MetamaskLogin = ({ hideForm }) => {
 
     async function metaMaskClientCheck() {
         if (!isMetaMaskInstalled()) {
-            await metamaskInstall()
             setIsButtonDisabled(true);
+            alert("Please install MetaMask.");
         }
         else {
             await metamaskConnect()
@@ -32,23 +31,17 @@ const MetamaskLogin = ({ hideForm }) => {
         }
     }
 
-    //Function checks if the MetaMask extension is installed    
+    // Функция проверяет, установлено ли расширение MetaMask   
     const isMetaMaskInstalled = () => {
-        //Have to check the ethereum binding on the window object to see if it's installed
+        // Необходимо проверить привязку ethereum к оконному объекту, чтобы убедиться, что он установлен.
         return Boolean(ethereum && ethereum.isMetaMask);
-    }
-
-    const metamaskInstall = async () => {
-        alert("Please install MetaMask.");
     }
 
     async function metamaskConnect() {
         setIsButtonDisabled(true);
-        setButtonText('Connecting to MetaMask...');
         try {
             let accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            console.log('Ethereum Request over');
-            setButtonText('MetaMask Connected');
+            console.log('MetaMask connected');
 
             dispatch(accountLogin(accounts[0]));
             
@@ -56,7 +49,6 @@ const MetamaskLogin = ({ hideForm }) => {
         } catch (error) {
             console.error(error);
             setIsButtonDisabled(false);
-            setButtonText('Connect MetaMask');
         }
     }
 
@@ -67,7 +59,7 @@ const MetamaskLogin = ({ hideForm }) => {
                 onClick={() => metaMaskClientCheck()}
             >
                 <img src={metaMaskFox} alt="metaMaskIcon" />
-                {buttonText}
+                MetaMask
             </button>
         </>
     )

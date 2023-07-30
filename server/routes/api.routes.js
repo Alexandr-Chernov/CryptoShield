@@ -28,8 +28,7 @@ router.post('/transaction', async (req, res) => {
         ////
 
         ////
-        // Если все прошло успешно, сохраняем данные, используя
-        // jwt токены
+        // Если все прошло успешно, сохраняем данные
         ////
 
         res.json({ message: `From: ${fromAddress}\nTo: ${toAddress}\nAmount: ${amount}` });

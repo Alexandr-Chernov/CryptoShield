@@ -6,32 +6,21 @@ const Account = require("../models/Account");
 const router = new Router();
 const authMiddleware = require('../middlewares/auth.middleware');
 
-router.post('/transaction', async (req, res) => {
+router.post('/createwallet', async (req, res) => {
     try {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ message: "Uncorrect request", errors })
         }
-        const { fromAddress, toAddress, amount } = req.body;
-
-        ////
-        // проверка на существоваение кошелька "toAddress"
-        ////
+        const { fromAddress } = req.body;
 
         ////
         // Создается кошелек
+        // Сохраняется с созданным аккаунтом в бд в модели с fromAddress
+        // account: { address: fromAddress, pad_address: newcreatedaddress }
         ////
 
-        //// 
-        // Предположительно, если аккаунт существует открывается смарт-контракт
-        // для перевода валюты на созданный кошелек
-        ////
-
-        ////
-        // Если все прошло успешно, сохраняем данные
-        ////
-
-        res.json({ message: `From: ${fromAddress}\nTo: ${toAddress}\nAmount: ${amount}` });
+        res.json({ message: `From: ${fromAddress}` });
     } catch (e) {
         console.log(e);
         res.send({ message: 'Server error' });

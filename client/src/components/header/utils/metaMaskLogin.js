@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import metaMaskFox from "../../../assets/img/metamask-fox.svg";
 import { accountLogin } from "../../../actions/accountLogin";
 
-
 const MetamaskLogin = ({ hideForm }) => {
     const { ethereum } = window;
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);

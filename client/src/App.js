@@ -14,7 +14,7 @@ function App() {
     if (localStorage.getItem('token')) {
       dispatch(accountAuth());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>

@@ -21,7 +21,8 @@
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",
-    "mongoose-type-ethereum-address": "^1.1.5"
+    "mongoose-type-ethereum-address": "^1.1.5",
+    "web3": "^4.0.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

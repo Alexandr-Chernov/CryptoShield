@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@700&family=Russo+One&display=swap');
+
+
+.content {
+    margin-top: 3rem;
+}
+.content ul {
+    list-style-type: none;
+    margin: 3rem 25rem;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #000;
+}
+.content ul li:first-child {
+    font-size: 2rem;
+    margin-right: 10rem;
+    margin: 0;
+    font-family: 'Russo One', sans-serif;
+}
+.content ul li:last-child {
+    font-family: 'Istok Web', sans-serif;
+    font-size: 1.1rem;
+}
+.copybutton {
+    display: flex;
+}
+.copybutton img {
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.check_wallet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.check_wallet button {
+    cursor: pointer;
+    padding: 1.2rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Russo One', sans-serif;
+    font-size: 2rem;
+    transition: 0.3s;
+}
+.check_wallet button:hover {
+    scale: 1.05;
+}

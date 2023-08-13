@@ -6,8 +6,20 @@ const Account = new Schema({
         type: String,
         unique: true,
         required: true
+    },
+    pad: {
+        address: {
+            type: String,
+            unique: true,
+            required: true
+        },
+        private: {
+            type: String,
+            unique: true,
+            required: true
+        }
     }
-    
-})
+
+});
 
 module.exports = model('Account', Account)

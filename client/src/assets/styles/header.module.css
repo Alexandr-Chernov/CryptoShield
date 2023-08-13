@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
 .navbar {
     background-color: black;
     display: flex;
@@ -9,13 +11,43 @@
 .navbar ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0.5rem 0;
 }
 
 .navbar_left {
     color: white;
     font-size: 1.6rem;
     font-family: consolas;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.navbar_center {
+    display: flex;
+    align-items: center;
+}
+.navbar_center li {
+    margin: 0 1rem;
+}
+.navbar_center a {
+    text-decoration: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.6rem;
+    font-family: 'PT Sans', sans-serif;
+    outline: none !important;
+    border: 1.6px solid #fff;
+    border-radius: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.navbar_center a:hover {
+    border: 1.6px solid #000;
+    background-color: #fff;
+    color: #000;
 }
 
 .navbar_right_2,
@@ -42,9 +74,12 @@
     font-size: 1.1rem;
 }
 
+.navbar_right_1 img {
+    width: 0.9rem;
+}
 .navbar_right_1 li button {
-    padding: 0.6rem;
-    font-size: 0.9rem;
+    width: 2rem;
+    height: 2rem;
 }
 
 .navbar_right_2 li button {
@@ -59,6 +94,10 @@
     border-radius: 0.5rem;
     background-color: #fff;
     cursor: pointer;
+    transition: 0.5s;
+}
+.navbar_right_1 li button:hover {
+    scale: 1.05;
 }
 
 .navbar_right_2 li button:hover {

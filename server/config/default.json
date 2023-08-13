@@ -1,5 +1,6 @@
 {
     "SERVER_PORT": 3001,
     "DB_URL": "mongodb+srv://Alexandr:j7c2SdCN9k1QOzr3wRrh@cluster0.4vc0cgd.mongodb.net/forms?retryWrites=true&w=majority",
-    "SECRET_KEY": "some key"
+    "SECRET_KEY": "some key",
+    "INFURA_ID": "9612c873d4f14fe588a07978a037fd4e"
 }
